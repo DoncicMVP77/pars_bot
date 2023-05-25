@@ -19,6 +19,9 @@ url = "https://www.kufar.by/l/r~minsk/kompyuternaya-tehnika"
 login = os.getenv("PROXY_LOGIN")
 password = os.getenv("PROXY_PASSWORD")
 
+redis_host = os.getenv("REDIS_HOST")
+redis_password = os.getenv("REDIS_PASSWORD")
+
 
 def handler():
     client_redis = _get_redis_client()
@@ -42,9 +45,10 @@ def _get_proxy_options() -> dict:
 
 def _get_redis_client() -> redis.StrictRedis:
     client_redis = redis.StrictRedis(
-        host='redis-17704.c269.eu-west-1-3.ec2.cloud.redislabs.com',
+        host=redis_host,
         port=17704, db=0,
-        password='W111LReek1K6mj0feYLAjkyhjKANk89h')
+        password=redis_password
+    )
     return client_redis
 
 
